@@ -20,8 +20,11 @@ import { Empty } from "@/components/ui/empty";
 import ReactMarkdown from "react-markdown";
 
 import { formSchema } from "./constants";
+import { useProModal } from "@/hooks/use-pro-modal";
+import toast from "react-hot-toast";
 
 const CodePage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [messages, setMessages] = useState<OpenAI.Chat.ChatCompletionMessage[]>([]);
   
@@ -36,6 +39,7 @@ const CodePage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
+      throw new Error("Something")
       const userMessage: OpenAI.Chat.ChatCompletionMessage = { role: "user", content: values.prompt };
       const newMessages = [...messages, userMessage];
 
@@ -44,8 +48,11 @@ const CodePage = () => {
 
       form.reset();
     } catch (error: any) {
-      // TODO: Open Pro Model
-      console.log(error);
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      } else {
+          toast.error("An error occurred while generating your response. Please check your prompt and try again.")
+      }
     } finally {
       router.refresh();
     }

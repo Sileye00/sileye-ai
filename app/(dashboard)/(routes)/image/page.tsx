@@ -17,11 +17,15 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { cn } from "@/lib/utils";
 import { Loader } from "@/components/loader";
 import { Empty } from "@/components/ui/empty";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 import { amountOptions, formSchema, resolutionOptions } from "./constants";
 import { Card, CardFooter } from "@/components/ui/card";
+import toast from "react-hot-toast";
 
 const ImagePage = () => {
+  const proModal = useProModal();
+  
   const router = useRouter();
   const [images, setImages] = useState<string[]>([]);
   
@@ -38,6 +42,7 @@ const ImagePage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
+      throw new Error("Something")
       setImages([]);
 
       const response = await axios.post("/api/image", values);
@@ -46,8 +51,12 @@ const ImagePage = () => {
       setImages(urls);
       form.reset();
     } catch (error: any) {
-      // TODO: Open Pro Model
-      console.log(error);
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      } else {
+        toast.error("An error occurred while generating your response. Please check your prompt and try again.")
+
+      }
     } finally {
       router.refresh();
     }

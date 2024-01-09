@@ -5,6 +5,8 @@ import * as z from "zod";
 import { MessageSquare } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import toast from "react-hot-toast";
+
 import { useRouter } from "next/navigation";
 import OpenAI from "openai";
 import { BotAvatar } from "@/components/bot-avatar";
@@ -19,8 +21,11 @@ import { UserAvatar } from "@/components/user-avatar";
 import { Empty } from "@/components/ui/empty";
 
 import { formSchema } from "./constants";
+import { useProModal } from "@/hooks/use-pro-modal";
+
 
 const ConversationPage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [messages, setMessages] = useState<OpenAI.Chat.ChatCompletionMessage[]>([]);
   
@@ -35,6 +40,7 @@ const ConversationPage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
+      throw new Error("Something")
       const userMessage: OpenAI.Chat.ChatCompletionMessage = { role: "user", content: values.prompt };
       const newMessages = [...messages, userMessage];
 
@@ -43,8 +49,11 @@ const ConversationPage = () => {
 
       form.reset();
     } catch (error: any) {
-      // TODO: Open Pro Model
-      console.log(error);
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      } else {
+        toast.error("An error occurred while generating your response. Please check your prompt and try again.")
+      }
     } finally {
       router.refresh();
     }
