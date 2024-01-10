@@ -9,18 +9,17 @@ import toast from "react-hot-toast";
 
 
 
-interface subscriptionButtonProps {
+interface SubscriptionButtonProps {
     isPro: boolean;
 };
 
 export const SubscriptionButton = ({
     isPro = false
-}: subscriptionButtonProps) => {
+}: SubscriptionButtonProps) => {
   const [loading, setLoading] = useState(false);
   
   const onClick = async () => {
     try {
-        throw new Error("Something")
         setLoading(true);
         const response = await axios.get("/api/stripe");
 

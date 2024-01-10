@@ -52,7 +52,6 @@ export const ProModal = () => {
 
     const onSubscribe = async () => {
       try {
-        throw new Error("Something")
         setLoading(true);
         const response = await axios.get("/api/stripe");
 
@@ -72,7 +71,7 @@ export const ProModal = () => {
                    <div className="flex items-center gap-x-2 font-bold py-1">
                      Upgrade to SilEyeAI
                      <Badge variant="premium" className="uppercase text-sm py-1">
-                      pro  
+                       pro  
                      </Badge>
                    </div>
                 </DialogTitle>
@@ -89,7 +88,7 @@ export const ProModal = () => {
                             </div>
                             <Check className="text-primary w-5 h-5"/>
                         </Card>
-                        ))}                   
+                     ))}                   
                 </DialogDescription>
             </DialogHeader>
             <DialogFooter>

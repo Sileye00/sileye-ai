@@ -40,7 +40,6 @@ const ConversationPage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      throw new Error("Something")
       const userMessage: OpenAI.Chat.ChatCompletionMessage = { role: "user", content: values.prompt };
       const newMessages = [...messages, userMessage];
 
@@ -57,7 +56,7 @@ const ConversationPage = () => {
     } finally {
       router.refresh();
     }
-  }
+  };
 
   return (
     <div>

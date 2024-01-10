@@ -15,7 +15,7 @@ interface FreeCounterProps {
 };
 
 export const FreeCounter = ({
-    apiLimitCount = 0,
+   apiLimitCount = 0,
     isPro = false,
 }: FreeCounterProps) => {
   const proModal = useProModal();

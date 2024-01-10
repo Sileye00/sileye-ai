@@ -1,12 +1,15 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import './globals.css'
 import { ClerkProvider } from '@clerk/nextjs'
-import { ModalProvider } from '@/components/modal-provider'
+
 import { ToasterProvider } from '@/components/toaster-provider'
+import { ModalProvider } from '@/components/modal-provider'
 import { CrispProvider } from '@/components/crisp-provider'
 
-const inter = Inter({ subsets: ['latin'] })
+import './globals.css'
+
+
+const font = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'SilEyeAI',
@@ -20,11 +23,11 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <CrispProvider />
-        <body className={inter.className}>
-          <ModalProvider />
+        <body className={font.className}>
           <ToasterProvider />
+          <ModalProvider />   
           {children}
         </body>
       </html>

@@ -36,7 +36,6 @@ const MusicPage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      throw new Error("Something")
       setMusic(undefined);
        
 
@@ -49,7 +48,6 @@ const MusicPage = () => {
         proModal.onOpen();
       } else {
         toast.error("An error occurred while generating your response. Please check your prompt and try again.")
-
       }
     } finally {
       router.refresh();

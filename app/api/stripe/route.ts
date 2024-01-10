@@ -5,7 +5,7 @@ import prismadb from "@/lib/prismadb";
 import { stripe } from "@/lib/stripe";
 import { absoluteUrl } from "@/lib/utils";
 
-const settingUrl = absoluteUrl("/settings");
+const settingsUrl = absoluteUrl("/settings");
 
 export async function GET() {
     try {
@@ -25,15 +25,15 @@ export async function GET() {
     if (userSubscription && userSubscription.stripeCustomerId) {
       const stripeSession = await stripe.billingPortal.sessions.create({
         customer: userSubscription.stripeCustomerId,
-        return_url: settingUrl,
+        return_url: settingsUrl,
       });
 
       return new NextResponse(JSON.stringify({ url: stripeSession.url }));
     }
 
     const stripeSession = await stripe.checkout.sessions.create({
-        success_url: settingUrl,
-        cancel_url: settingUrl,
+        success_url: settingsUrl,
+        cancel_url: settingsUrl,
         payment_method_types: ["card"],
         mode: "subscription",
         billing_address_collection: "auto",
@@ -44,7 +44,7 @@ export async function GET() {
                     currency: "USD",
                     product_data: {
                         name: "SilEyeAI Pro",
-                        description: "SilEyeAI Pro - Unlimited Generations",
+                        description: "Unlimited AI Tools Generations",
                     },
                     unit_amount: 2000,
                     recurring: {
@@ -59,10 +59,9 @@ export async function GET() {
         }
     });
 
-    return new NextResponse(JSON.stringify({ url: stripeSession.url }));
-      
+      return new NextResponse(JSON.stringify({ url: stripeSession.url })); 
     } catch (error) {
-        console.log("[STRIPE_ERROR]", error);
-        return new NextResponse("Internal error", { status: 500 });
+      console.log("[STRIPE_ERROR]", error);
+      return new NextResponse("Internal error", { status: 500 });
     }   
 }

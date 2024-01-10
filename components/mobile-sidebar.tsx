@@ -12,7 +12,7 @@ interface MobileSidebarProps {
   isPro: boolean;
 }
 
-const MobileSidebar = ({
+export const MobileSidebar = ({
   apiLimitCount = 0,
   isPro = false,
 }: MobileSidebarProps) => {
