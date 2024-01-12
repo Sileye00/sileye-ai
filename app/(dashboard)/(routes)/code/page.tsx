@@ -39,7 +39,7 @@ const CodePage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const userMessage: OpenAI.Chat.ChatCompletionMessage = { role: "user", content: values.prompt };
+      const userMessage: OpenAI.Chat.ChatCompletionMessage = { role: "assistant", content: values.prompt };
       const newMessages = [...messages, userMessage];
 
       const response = await axios.post("/api/code", { messages: newMessages });
@@ -99,10 +99,10 @@ const CodePage = () => {
                  key={message.content}
                  className={cn(
                    "p-8 w-full flex items-start gap-x-8 rounded-lg",
-                   message.role === "user" ? "bg-white border border-black/10" : "bg-muted",
+                   message.role === "assistant" ? "bg-white border border-black/10" : "bg-muted",
                  )}
                 >
-                 {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
+                 {message.role === "assistant" ? <UserAvatar /> : <BotAvatar />}
                  <ReactMarkdown
                    components={{
                      pre: ({ node, ...props }) => (
