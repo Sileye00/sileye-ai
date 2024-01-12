@@ -1,7 +1,6 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Image from "next/image";
 
 const testimonials = [
     {
@@ -41,7 +40,7 @@ export const LandingContent = () => {
            <Card key={item.description} className="bg-[#192339] border-none text-white">
              <CardHeader>
              <CardTitle className={`flex items-center gap-x-2 ${item.avatar}`}>
-                <Image src={item.avatar} alt={item.name} className={`${item.avatar} rounded-full`} />
+                <img src={item.avatar} alt={item.name} className={`${item.avatar} rounded-full`} />
                    <div>
                       <p className="text-lg">{item.name}</p>
                       <p className="text-zinc-400 text-sm">{item.title}</p>
