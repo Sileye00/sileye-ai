@@ -5,27 +5,27 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const testimonials = [
     {
         name: "Alioune",
-        avatar: "A",
+        avatar: "https://i.pravatar.cc/150?img=51",
         title: "Digital Creator",
-        description: "A must-have tool for any digital creator looking to elevate their work."
+        description: "Transform your ideas into captivating visuals and immersive experiences with this essential tool. Elevate your work seamlessly."
     },
     {
         name: "Nathalie",
-        avatar: "N",
+        avatar: "https://i.pravatar.cc/150?img=1",
         title: "Web Developer",
         description: "I love this platform and it has become an indispensable asset in my creative toolkit, unlocking new dimensions in my digital projects."
     },
     {
         name: "Steves",
-        avatar: "S",
+        avatar: "https://i.pravatar.cc/150?img=58",
         title: "Digital Marketer",
         description: "SilEye AI is my secret weapon for taking my digital creations to the next level. It's intuitive, powerful, and an absolute game-changer."
     },
     {
         name: "Anu",
-        avatar: "A",
-        title: "Product  Assistant",
-        description: "Revolutionize your creative process with SilEye AI. It's a transformative experience for music producer and digital creators seeking innovation."
+        avatar: "https://i.pravatar.cc/150?img=67",
+        title: "Product Assistant",
+        description: "Revolutionize your creative process with SilEye AI. It's a transformative experience for music producers seeking innovation."
     }
 ]
 
@@ -39,7 +39,8 @@ export const LandingContent = () => {
         {testimonials.map((item) => (
            <Card key={item.description} className="bg-[#192339] border-none text-white">
              <CardHeader>
-                <CardTitle className="flex items-center gap-x-2">
+             <CardTitle className={`flex items-center gap-x-2 ${item.avatar}`}>
+                <img src={item.avatar} alt={item.name} className={`${item.avatar} rounded-full`} />
                    <div>
                       <p className="text-lg">{item.name}</p>
                       <p className="text-zinc-400 text-sm">{item.title}</p>
