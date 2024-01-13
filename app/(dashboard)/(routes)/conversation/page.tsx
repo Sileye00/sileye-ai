@@ -27,7 +27,7 @@ import { useProModal } from "@/hooks/use-pro-modal";
 const ConversationPage = () => {
   const proModal = useProModal();
   const router = useRouter();
-  const [messages, setMessages] = useState<OpenAI.Chat.ChatCompletionMessage[]>([]);
+  const [messages, setMessages] = useState<OpenAI.Chat.ChatCompletionMessageParam[]>([]);
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -40,7 +40,7 @@ const ConversationPage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const userMessage: OpenAI.Chat.ChatCompletionMessage = { role: "user", content: values.prompt };
+      const userMessage: OpenAI.Chat.ChatCompletionMessageParam = { role: "user", content: values.prompt };
       const newMessages = [...messages, userMessage];
 
       const response = await axios.post("/api/conversation", { messages: newMessages });

@@ -26,7 +26,7 @@ import toast from "react-hot-toast";
 const CodePage = () => {
   const proModal = useProModal();
   const router = useRouter();
-  const [messages, setMessages] = useState<OpenAI.Chat.ChatCompletionMessage[]>([]);
+  const [messages, setMessages] = useState<OpenAI.Chat.ChatCompletionMessageParam[]>([]);
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -39,7 +39,7 @@ const CodePage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const userMessage: OpenAI.Chat.ChatCompletionMessage = { role: "user", content: values.prompt };
+      const userMessage: OpenAI.Chat.ChatCompletionMessageParam = { role: "user", content: values.prompt };
       const newMessages = [...messages, userMessage];
 
       const response = await axios.post("/api/code", { messages: newMessages });

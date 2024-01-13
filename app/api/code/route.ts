@@ -9,7 +9,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
 
-const instructionMessage: OpenAI.Chat.ChatCompletionMessage = {
+const instructionMessage: OpenAI.Chat.ChatCompletionMessageParam = {
   role: "user",
   content: "You are a code generator. You must answer only in markdown code snippets. Use code comments for explanations."
 }
