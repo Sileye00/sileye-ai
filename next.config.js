@@ -1,3 +1,11 @@
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+    images: {
+        domains: [
+            "oaidalleapiprodscus.blob.core.windows.net",
+        ]
+    }
+}
 module.exports = {
     env: {
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
@@ -14,4 +22,4 @@ module.exports = {
     STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
     }
 }
-
+module.exports = nextConfig
