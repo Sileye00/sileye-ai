@@ -16,7 +16,7 @@ const nextConfig = {
       REPLICATE_API_TOKEN: process.env.REPLICATE_API_TOKEN,
       DATABASE_URL: process.env.DATABASE_URL,
       STRIPE_API_KEY: process.env.STRIPE_API_KEY,
-      NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_API_URL,
+      NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
       STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
     },
 };
