@@ -27,7 +27,12 @@ const testimonials = [
         title: "Product Assistant",
         description: "Revolutionize your creative process with SilEye AI. It's a transformative experience for music producers seeking innovation."
     }
-]
+];
+
+const additionalSectionContent = {
+  imageSrc: "/landing.png", 
+  text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+};
 
 export const LandingContent = () => {
     return (
@@ -52,6 +57,15 @@ export const LandingContent = () => {
              </CardHeader>           
            </Card>
         ))}
+      </div>
+      <div className="my-20"></div>
+      <div className="px-10 pb-20">
+        <div className="flex-1">
+          <img src={additionalSectionContent.imageSrc} alt="Additional Section Image" className="rounded-lg" />
+        </div>
+        <div className="flex-1 ml-4">
+          <p className="text-white">{additionalSectionContent.text}</p>
+        </div>
       </div>
     </div>
   )
