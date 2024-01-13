@@ -12,7 +12,6 @@ module.exports = {
     STRIPE_API_KEY: process.env.STRIPE_API_KEY,
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
     STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
-
     }
 }
 
