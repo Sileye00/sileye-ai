@@ -96,7 +96,7 @@ const CodePage = () => {
            <div className="flex flex-col-reverse gap-y-4">
              {messages.map((message) =>(
                <div 
-                 key={message.content}
+                 key={message.content?.toString() || ''}
                  className={cn(
                    "p-8 w-full flex items-start gap-x-8 rounded-lg",
                    message.role === "user" ? "bg-white border border-black/10" : "bg-muted",
@@ -115,7 +115,7 @@ const CodePage = () => {
                    }}
                    className="text-sm overflow-hidden leading-7"
                  >
-                   {message.content || ""}
+                   {message.content?.toString() || ''}
                  </ReactMarkdown>
                </div>
              ))}
