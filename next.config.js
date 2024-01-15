@@ -1,6 +1,13 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
+    images: {
+       domains: [
+         "googleusercontent.com",
+         "oaidalleapiprodscus.blob.core.windows.net",
+         "cdn.openai.com"
+    ]
+  },
     env: {
       NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
       CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
