@@ -2,6 +2,7 @@ import Navbar from "@/components/navbar";
 import { Sidebar } from "@/components/sidebar";
 import { getApiLimitCount } from "@/lib/api-limit";
 import { checkSubscription } from "@/lib/subscription";
+import Footer from '@/components/footer'
 
 const DashboardLayout = async ({ 
   children, 
@@ -21,6 +22,7 @@ const DashboardLayout = async ({
             {children}            
         </main>
       </div>
+      
   );
 }
 

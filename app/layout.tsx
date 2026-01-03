@@ -7,7 +7,7 @@ import { ModalProvider } from '@/components/modal-provider'
 import { CrispProvider } from '@/components/crisp-provider'
 
 import './globals.css'
-import Footer from '@/components/footer'
+
 
 
 const font = Inter({ subsets: ['latin'] })
@@ -30,7 +30,7 @@ export default function RootLayout({
           <ToasterProvider />
           <ModalProvider />   
           {children}
-          <Footer />    
+              
         </body>
       </html>
     </ClerkProvider>

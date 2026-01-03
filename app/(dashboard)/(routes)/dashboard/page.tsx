@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
+
 const tools = [
   {
     label: "Conversation",
@@ -72,11 +73,10 @@ const DashboardPage = () => {
             </div>
             <ArrowRight className="w-5 h-5" />
           </Card>
-
         ))}
-      </div>     
+      </div>  
     </div>
-  )    
+  ) 
 }
 
 export default DashboardPage;

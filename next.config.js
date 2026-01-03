@@ -1,12 +1,27 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
-    images: {
-       domains: [
-         "googleusercontent.com",
-         "oaidalleapiprodscus.blob.core.windows.net",
-         "cdn.openai.com"
-    ]
+  reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "replicate.com",
+      },
+      {
+        protocol: "https",
+        hostname: "replicate.delivery",
+      },
+      {
+        protocol: "https",
+        hostname: "i.pravatar.cc",
+      },
+      {
+        protocol: "https",
+        hostname:  "googleusercontent.com",
+      },
+      
+    ],
   },
     env: {
       NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,

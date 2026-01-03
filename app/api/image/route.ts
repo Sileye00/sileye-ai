@@ -1,12 +1,12 @@
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-import OpenAI from "openai";
+import Replicate from "replicate";
 
 import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
 import { checkSubscription } from "@/lib/subscription";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
+const replicate = new Replicate({
+  auth: process.env.REPLICATE_API_TOKEN,
 });
 
 export async function POST(
@@ -19,10 +19,6 @@ export async function POST(
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
-    }
-
-    if (!openai.apiKey) {
-      return new NextResponse("OpenAI API Key not configured", { status: 500 });
     }
 
     if (!prompt) {
@@ -42,16 +38,19 @@ export async function POST(
       return new NextResponse("Free trial has expired.", { status: 403 });
     }
 
-    const response = await openai.images.generate({
-      prompt,
-      n: parseInt(amount, 10),
-      size: resolution,
-    });
+    const response = await replicate.run(
+      "lucataco/playground-v2.5-1024px-aesthetic:419269784d9e00c56e5b09747cfc059a421e0c044d5472109e129b746508c365",
+      {
+        input: {
+          prompt: prompt,
+        }
+      }
+    );
 
     if (!isPro) {
       await increaseApiLimit();
     }
-    return NextResponse.json(response.data);
+    return NextResponse.json(response);
 
   } catch (error) {
     console.log("[IMAGE_ERROR]", error);
