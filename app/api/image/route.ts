@@ -43,6 +43,7 @@ export async function POST(
       prompt: prompt,
       n: parseInt(amount, 10),
       size: resolution as "256x256" | "512x512" | "1024x1024" | "1792x1024" | "1024x1792",
+      quality: "standard",
     });
 
     if (!isPro) {
