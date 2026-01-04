@@ -51,8 +51,25 @@ export async function POST(
     
     return NextResponse.json(response.data);
 
-  } catch (error) {
+  } catch (error: any) {
     console.log("[IMAGE_ERROR]", error);
+    
+    // Handle specific OpenAI errors
+    if (error?.response?.data?.error) {
+      const openaiError = error.response.data.error;
+      console.log("OpenAI Error:", openaiError);
+      
+      if (openaiError.code === 'content_policy_violation') {
+        return new NextResponse("Your prompt violates OpenAI's content policy. Please try a different prompt.", { status: 400 });
+      }
+      
+      if (openaiError.code === 'billing_hard_limit_reached') {
+        return new NextResponse("OpenAI API quota exceeded. Please check your billing.", { status: 402 });
+      }
+      
+      return new NextResponse(`OpenAI Error: ${openaiError.message}`, { status: 400 });
+    }
+    
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 }
