@@ -1,12 +1,12 @@
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-import Replicate from "replicate";
+import OpenAI from "openai";
 
 import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
 import { checkSubscription } from "@/lib/subscription";
 
-const replicate = new Replicate({
-  auth: process.env.REPLICATE_API_TOKEN,
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 export async function POST(
@@ -15,7 +15,7 @@ export async function POST(
   try {
     const { userId } = auth();
     const body = await req.json();
-    const { prompt, amount = 1, resolution = "512x512" } = body;
+    const { prompt, amount = 1, resolution = "1024x1024" } = body;
 
     if (!userId) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -38,19 +38,18 @@ export async function POST(
       return new NextResponse("Free trial has expired.", { status: 403 });
     }
 
-    const response = await replicate.run(
-      "lucataco/playground-v2.5-1024px-aesthetic:419269784d9e00c56e5b09747cfc059a421e0c044d5472109e129b746508c365",
-      {
-        input: {
-          prompt: prompt,
-        }
-      }
-    );
+    const response = await openai.images.generate({
+      model: "dall-e-3",
+      prompt: prompt,
+      n: parseInt(amount, 10),
+      size: resolution as "256x256" | "512x512" | "1024x1024" | "1792x1024" | "1024x1792",
+    });
 
     if (!isPro) {
       await increaseApiLimit();
     }
-    return NextResponse.json(response);
+    
+    return NextResponse.json(response.data);
 
   } catch (error) {
     console.log("[IMAGE_ERROR]", error);
