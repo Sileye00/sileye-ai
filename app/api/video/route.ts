@@ -1,13 +1,8 @@
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-import Replicate from "replicate";
 
 import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
 import { checkSubscription } from "@/lib/subscription";
-
-const replicate = new Replicate({
-  auth: process.env.REPLICATE_API_TOKEN
-});
 
 export async function POST(
   req: Request
@@ -32,17 +27,16 @@ export async function POST(
       return new NextResponse("Free trial has expired.", { status: 403 });
     }
 
-    const response = await replicate.run(
-      "anotherjesse/zeroscope-v2-xl:9f747673945c62801b13b84701c783929c0ee784e4748ec062204894dda1a351",
-      {
-        input: {
-          prompt
-        }
-      }
-    );
+    // Video generation is currently unavailable
+    // You can integrate with services like RunwayML, Pika Labs, or other video AI APIs
+    const response = {
+      message: "Video generation feature is currently under development. Please check back later!",
+      prompt: prompt
+    };
+
     if (!isPro) {
-    await increaseApiLimit();
-  }
+      await increaseApiLimit();
+    }
 
     return NextResponse.json(response);
 
