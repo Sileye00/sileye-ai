@@ -37,13 +37,13 @@ export async function POST(
     };
 
     console.log('[VIDEO] Starting generation...');
-    const output = await replicate.run("wan-video/wan-2.5-t2v-fast", { input });
+    const output = await replicate.run("wan-video/wan-2.5-t2v-fast", { input }) as any;
     
     console.log('[VIDEO_OUTPUT]', output);
     console.log('[VIDEO_OUTPUT_TYPE]', typeof output);
     
-    // Get the URL from the output object
-    const videoUrl = output.url();
+    // Get the URL from the output
+    const videoUrl = output;
     console.log('[VIDEO_URL]', videoUrl);
     
     if (!isPro) {
