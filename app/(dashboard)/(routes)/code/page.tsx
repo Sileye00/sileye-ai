@@ -150,13 +150,10 @@ const CodePage = () => {
                          </div>
                        );
                      },
-                     code: ({ node, inline, ...props }) => {
-                       if (inline) {
-                         return (
-                           <code className="bg-gray-100 text-green-700 rounded-md px-2 py-1 font-mono text-sm" {...props} />
-                         );
-                       }
-                       return <code {...props} />;
+                     code: ({ node, ...props }) => {
+                       return (
+                         <code className="bg-gray-100 text-green-700 rounded-md px-2 py-1 font-mono text-sm" {...props} />
+                       );
                      }
                    }}
                    className="text-base leading-relaxed text-gray-700 overflow-hidden w-full"
