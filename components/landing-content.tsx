@@ -22,13 +22,13 @@ const testimonials = [
         name: "Steves",
         avatar: "https://i.pravatar.cc/150?img=58",
         title: "Digital Marketer",
-        description: "SilEye AI is my secret weapon for taking my digital creations to the next level. It's intuitive, powerful, and an absolute game-changer."
+        description: "SilEye AI is my secret weapon for taking my digital creations to the next level. It&apos;s intuitive, powerful, and an absolute game-changer."
     },
     {
         name: "Anu",
         avatar: "https://i.pravatar.cc/150?img=67",
         title: "Product Assistant",
-        description: "Revolutionize your creative process with SilEye AI. It's a transformative experience for music producers seeking innovation."
+        description: "Revolutionize your creative process with SilEye AI. It&apos;s a transformative experience for music producers seeking innovation."
     }
 ];
 
@@ -101,7 +101,7 @@ export const LandingContent = () => {
             </div>
             
             <p className="text-lg text-slate-300 leading-relaxed max-w-4xl mx-auto">
-              Unlock limitless possibilities with SilEye AI's cutting-edge technology. From intelligent conversations to stunning visuals, 
+              Unlock limitless possibilities with SilEye AI&apos;s cutting-edge technology. From intelligent conversations to stunning visuals, 
               our platform empowers creators, developers, and innovators to bring their wildest ideas to life.
             </p>
             
