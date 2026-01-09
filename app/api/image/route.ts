@@ -53,15 +53,15 @@ export async function POST(
     return NextResponse.json(response.data);
 
   } catch (error: any) {
-    console.log("[IMAGE_ERROR]", error);
+    console.log("[IMAGE_ERROR] Full error:", JSON.stringify(error, null, 2));
     
     // Handle specific OpenAI errors
     if (error?.response?.data?.error) {
       const openaiError = error.response.data.error;
-      console.log("OpenAI Error:", openaiError);
+      console.log("OpenAI Error details:", openaiError);
       
       if (openaiError.code === 'content_policy_violation') {
-        return new NextResponse("Your prompt violates OpenAI's content policy. Please try a different prompt.", { status: 400 });
+        return new NextResponse(`Content policy violation: ${openaiError.message}`, { status: 400 });
       }
       
       if (openaiError.code === 'billing_hard_limit_reached') {
@@ -69,6 +69,12 @@ export async function POST(
       }
       
       return new NextResponse(`OpenAI Error: ${openaiError.message}`, { status: 400 });
+    }
+    
+    // Log the error message if it exists
+    if (error?.message) {
+      console.log("Error message:", error.message);
+      return new NextResponse(`Error: ${error.message}`, { status: 500 });
     }
     
     return new NextResponse("Internal Server Error", { status: 500 });

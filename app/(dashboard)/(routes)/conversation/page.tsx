@@ -59,52 +59,66 @@ const ConversationPage = () => {
   };
 
   return (
-    <div>
-      <Heading 
-        title="Conversation" 
-        description="Chat effortlessly with SilEye AI where simplicity meets intelligence." 
-        icon={MessageSquare} 
-        iconColor="text-violet-500" 
-        bgColor="bg-violet-500/10" 
-      />
-      <div className="px-4 lg:px-8">
-        <div>
+    <div className="h-full bg-gradient-to-br from-violet-50 via-white to-purple-50">
+      <div className="bg-white/80 backdrop-blur-sm border-b border-violet-100">
+        <Heading 
+          title="Conversation" 
+          description="Chat effortlessly with SilEye AI where simplicity meets intelligence." 
+          icon={MessageSquare} 
+          iconColor="text-violet-500" 
+          bgColor="bg-violet-500/10" 
+        />
+      </div>
+      <div className="px-4 lg:px-8 py-6">
+        <div className="mb-8">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="rounded-lg border w-full p-4 px-3 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="bg-white/90 backdrop-blur-sm rounded-2xl border border-violet-200 shadow-lg w-full p-6 focus-within:shadow-xl focus-within:border-violet-300 transition-all duration-300 grid grid-cols-12 gap-4">
               <FormField name="prompt" render={({ field }) => (
                 <FormItem className="col-span-12 lg:col-span-10">
                   <FormControl className="m-0 p-0">
-                    <Input className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent" disabled={isLoading} placeholder="Start your intelligent conversation here...Ask me anything!" {...field}/>
+                    <Input 
+                      className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent text-lg placeholder:text-gray-400 bg-transparent" 
+                      disabled={isLoading} 
+                      placeholder="Start your intelligent conversation here...Ask me anything!" 
+                      {...field}
+                    />
                   </FormControl>
                 </FormItem>
               )}
              />
-             <Button className="col-span-12 lg:col-span-2 w-full" disabled={isLoading}>
+             <Button 
+               className="col-span-12 lg:col-span-2 w-full bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white font-semibold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300" 
+               disabled={isLoading}
+             >
                Generate
              </Button>
             </form>
            </Form>
          </div>
-         <div className="space-y-4 mt-4">
+         <div className="space-y-6">
            {isLoading && (
-            <div className="p-8 rounded-lg w-full flex items-center justify-center bg-muted">
+            <div className="p-12 rounded-2xl w-full flex items-center justify-center bg-white/60 backdrop-blur-sm border border-violet-100 shadow-lg">
               <Loader />
             </div>
            )}
           {messages.length === 0 && !isLoading && (
-              <Empty label="No conversation started." />          
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl border border-violet-100 shadow-lg">
+                <Empty label="No conversation started." imageSrc="/conversation-empty.png" />          
+              </div>
             )}
-           <div className="flex flex-col-reverse gap-y-4">
+           <div className="flex flex-col-reverse gap-y-6">
              {messages.map((message) =>(
                <div 
                  key={message.content?.toString() || ''}
                  className={cn(
-                   "p-8 w-full flex items-start gap-x-8 rounded-lg",
-                   message.role === "user" ? "bg-white border border-black/10" : "bg-muted",
+                   "p-6 w-full flex items-start gap-x-6 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl",
+                   message.role === "user" 
+                     ? "bg-white/90 backdrop-blur-sm border border-violet-200 ml-8" 
+                     : "bg-gradient-to-r from-violet-50 to-purple-50 border border-violet-100 mr-8",
                  )}
                 >
                  {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
-                 <p className="text-sm">
+                 <p className="text-base leading-relaxed text-gray-700">
                    {message.content?.toString() || ''}
                  </p>
                </div>

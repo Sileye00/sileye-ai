@@ -59,22 +59,24 @@ const ImagePage = () => {
   }
 
   return (
-    <div>
-      <Heading 
-        title="Image Generation" 
-        description="Turn your prompts into stunning images!" 
-        icon={ImageIcon} 
-        iconColor="text-pink-700" 
-        bgColor="bg-pink-700/10" 
-      />
-      <div className="px-4 lg:px-8">
-        <div>
+    <div className="h-full bg-gradient-to-br from-pink-50 via-white to-rose-50">
+      <div className="bg-white/80 backdrop-blur-sm border-b border-pink-100">
+        <Heading 
+          title="Image Generation" 
+          description="Turn your prompts into stunning images!" 
+          icon={ImageIcon} 
+          iconColor="text-pink-700" 
+          bgColor="bg-pink-700/10" 
+        />
+      </div>
+      <div className="px-4 lg:px-8 py-6">
+        <div className="mb-8">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="rounded-lg border w-full p-4 px-3 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="bg-white/90 backdrop-blur-sm rounded-2xl border border-pink-200 shadow-lg w-full p-6 focus-within:shadow-xl focus-within:border-pink-300 transition-all duration-300 grid grid-cols-12 gap-4">
               <FormField name="prompt" render={({ field }) => (
                 <FormItem className="col-span-12 lg:col-span-6">
                   <FormControl className="m-0 p-0">
-                    <Input className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent" disabled={isLoading} placeholder="Example: A beautiful sunset scene over an ocean with palm trees" {...field}/>
+                    <Input className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent text-lg placeholder:text-gray-400 bg-transparent" disabled={isLoading} placeholder="Example: A beautiful sunset scene over an ocean with palm trees" {...field}/>
                   </FormControl>
                 </FormItem>
               )}
@@ -85,7 +87,7 @@ const ImagePage = () => {
                   <FormItem className="col-span-12 lg:col-span-2">
                     <Select disabled={isLoading} onValueChange={field.onChange} value={field.value} defaultValue={field.value}>
                        <FormControl>
-                         <SelectTrigger>
+                         <SelectTrigger className="bg-transparent border-0 focus:ring-0">
                            <SelectValue defaultValue={field.value} />
                          </SelectTrigger>
                        </FormControl>
@@ -106,7 +108,7 @@ const ImagePage = () => {
                   <FormItem className="col-span-12 lg:col-span-2">
                     <Select disabled={isLoading} onValueChange={field.onChange} value={field.value} defaultValue={field.value}>
                        <FormControl>
-                         <SelectTrigger>
+                         <SelectTrigger className="bg-transparent border-0 focus:ring-0">
                            <SelectValue defaultValue={field.value} />
                          </SelectTrigger>
                        </FormControl>
@@ -121,29 +123,31 @@ const ImagePage = () => {
                   </FormItem>
                 )}
              />
-             <Button className="col-span-12 lg:col-span-2 w-full" disabled={isLoading}>
+             <Button className="col-span-12 lg:col-span-2 w-full bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-700 hover:to-rose-700 text-white font-semibold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300" disabled={isLoading}>
                Generate
              </Button>
             </form>
            </Form>
          </div>
-         <div className="space-y-4 mt-4">
+         <div className="space-y-6">
            {isLoading && (
-            <div className="p-20">
+            <div className="p-12 rounded-2xl w-full flex items-center justify-center bg-white/60 backdrop-blur-sm border border-pink-100 shadow-lg">
               <Loader />
             </div>
            )}
           {images.length === 0 && !isLoading && (
-              <Empty label="No images generated." />          
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl border border-pink-100 shadow-lg">
+                <Empty label="No images generated." imageSrc="/image-empty.png" />          
+              </div>
             )}
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {images.map((src) => (
-                <Card key={src} className="rounded-lg overflow-hidden">
+                <Card key={src} className="bg-white/90 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-pink-200">
                    <div className="relative aspect-square">
-                     <Image alt="Image" fill src={src} />
+                     <Image alt="Image" fill src={src} className="object-cover" />
                    </div>
-                   <CardFooter className="p-2">
-                    <Button onClick={() => window.open(src)} variant="secondary" className="w-full">
+                   <CardFooter className="p-4">
+                    <Button onClick={() => window.open(src)} variant="secondary" className="w-full bg-gradient-to-r from-pink-100 to-rose-100 hover:from-pink-200 hover:to-rose-200 text-pink-700 font-medium rounded-xl">
                       <Download className="h-4 w-4 mr-2" />
                       Download
                     </Button>

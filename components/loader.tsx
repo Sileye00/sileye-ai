@@ -8,7 +8,13 @@ export const Loader = () => {
           alt="Logo" 
           fill 
           src="/logo.png" 
+          className="object-contain filter invert"
         />
+      </div>
+      <div className="flex items-center gap-1">
+        <div className="w-2 h-2 bg-violet-500 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+        <div className="w-2 h-2 bg-violet-500 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+        <div className="w-2 h-2 bg-violet-500 rounded-full animate-bounce"></div>
       </div>
       <p className="text-sm text-muted-foreground">
         SilEye AI is thinking...
