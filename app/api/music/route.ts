@@ -39,12 +39,12 @@ export async function POST(
     const output = await replicate.run(
       "riffusion/riffusion:8cf61ea6c56afd61d8f5b9ffd14d7c216c0a93844ce2d82ac1c9ecc9c7f24e05",
       { input }
-    );
+    ) as any;
     
     console.log('[MUSIC_OUTPUT]', output);
     
-    // Get the URL from the audio property and convert to string
-    const musicUrl = output.audio.url().toString();
+    // Get the URL from the output
+    const musicUrl = output?.audio || output;
     console.log('[MUSIC_URL]', musicUrl);
 
     if (!isPro) {
