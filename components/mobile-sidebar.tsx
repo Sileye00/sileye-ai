@@ -17,6 +17,7 @@ export const MobileSidebar = ({
   isPro = false,
 }: MobileSidebarProps) => {
   const [isMounted, setIsMounted] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -27,14 +28,14 @@ export const MobileSidebar = ({
   }
   
   return (
-    <Sheet>
-       <SheetTrigger>
+    <Sheet open={open} onOpenChange={setOpen}>
+       <SheetTrigger asChild>
          <Button variant="ghost" size="icon" className="md:hidden">
             <Menu />
          </Button>
        </SheetTrigger>
        <SheetContent side="left" className="p-0">
-         <Sidebar isPro={isPro} apiLimitCount={apiLimitCount}/>
+         <Sidebar isPro={isPro} apiLimitCount={apiLimitCount} onNavigate={() => setOpen(false)} />
        </SheetContent>
     </Sheet>
     );
