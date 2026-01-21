@@ -74,7 +74,7 @@ export const Sidebar = ({
     return (
     <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
       <div className="px-3 py-2 flex-1">
-         <Link href="/dashboard" className="flex items-center -ml-2 -mt-20">
+         <Link href="/dashboard" className="flex items-center -ml-8 -mt-20">
           <div className="relative w-44 h-44">
             <Image
               fill
@@ -83,7 +83,7 @@ export const Sidebar = ({
               className="object-contain"              
             />        
           </div>
-          <h1 className={cn("text-xl font-bold text-white -ml-8", montserrat.className)}>
+          <h1 className={cn("text-xl font-bold text-white -ml-10", montserrat.className)}>
             SilEyeAI
           </h1>
          </Link>

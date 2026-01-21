@@ -34,7 +34,7 @@ const testimonials = [
 
 export const LandingContent = () => {
     return (
-    <div className="px-10 pb-20">
+    <div className="px-4 md:px-10 pb-20">
       
       {/* Transition Text Section */}
       <div className="text-center py-16 px-6">
@@ -65,26 +65,26 @@ export const LandingContent = () => {
       {/* Enhanced Feature Section */}
       <div className="mt-20 relative">
         <div className="absolute inset-0 bg-gradient-to-r from-violet-600/20 via-purple-600/20 to-pink-600/20 blur-3xl rounded-3xl"></div>
-        <div className="relative bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-sm rounded-3xl p-12 border border-slate-700">
+        <div className="relative bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-sm rounded-3xl p-4 md:p-12 border border-slate-700">
           
           {/* Full Width Image Section */}
           <div className="mb-12">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-violet-500 to-pink-500 rounded-2xl blur-2xl opacity-30"></div>
-              <div className="relative bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl p-8 border border-slate-600">
+              <div className="relative bg-gradient-to-br from-slate-700 to-slate-800 rounded-2xl p-4 md:p-8 border border-slate-600">
                 <Image 
                   src="/landing.png" 
                   alt="SilEye AI Platform" 
                   width={1200} 
                   height={700} 
-                  className="rounded-xl shadow-2xl w-full h-auto object-cover min-h-[500px]"
+                  className="rounded-xl shadow-2xl w-full h-auto object-contain"
                 />
-                <div className="absolute top-4 right-4 flex gap-2">
+                <div className="absolute top-2 right-2 md:top-4 md:right-4 flex gap-2">
                   <div className="bg-violet-500/20 backdrop-blur-sm rounded-full p-2">
-                    <Sparkles className="w-5 h-5 text-violet-400" />
+                    <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-violet-400" />
                   </div>
                   <div className="bg-pink-500/20 backdrop-blur-sm rounded-full p-2">
-                    <Zap className="w-5 h-5 text-pink-400" />
+                    <Zap className="w-4 h-4 md:w-5 md:h-5 text-pink-400" />
                   </div>
                 </div>
               </div>
@@ -93,9 +93,9 @@ export const LandingContent = () => {
           
           {/* Content Below Image */}
           <div className="text-center space-y-6">
-            <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-3 mb-4">
               <Brain className="w-8 h-8 text-violet-400" />
-              <h3 className="text-3xl font-bold text-white">
+              <h3 className="text-2xl md:text-3xl font-bold text-white">
                 Experience the Future of <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-pink-600">AI Creativity</span>
               </h3>
             </div>
