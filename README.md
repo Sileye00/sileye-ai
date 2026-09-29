@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SileyeAI
+
+![SileyeAI landing page](./public/landing.png)
+
+SileyeAI is a full-stack generative AI application I built as a hands-on learning project while following a **Code With Antonio** course.
+
+The project gave me practical experience integrating multiple AI capabilities into a modern web application, while also working with authentication, database persistence, API routes, usage limits, subscriptions, and payments.
+
+## Features
+
+- AI conversation generation
+- Code generation
+- Image generation
+- Music generation
+- Video generation
+- User authentication
+- Usage limits and subscription management
+- Responsive dashboard experience
+
+## Tech Stack
+
+**Frontend:** Next.js, React, TypeScript, Tailwind CSS  
+**Authentication:** Clerk  
+**Database:** PostgreSQL, Prisma ORM  
+**AI integrations:** OpenAI, Replicate  
+**Payments:** Stripe  
+**UI & validation:** Radix UI, React Hook Form, Zod
+
+## Architecture
+
+SileyeAI uses the Next.js App Router for the application interface and server-side API routes. Authentication is handled with Clerk, while Prisma provides the data layer for PostgreSQL. Separate API routes support conversation, code, image, music, and video generation. Stripe is integrated for subscription functionality and webhooks.
+
+## What I Practiced
+
+Building this project helped me strengthen my understanding of:
+
+- Full-stack development with Next.js and TypeScript
+- Integrating generative AI APIs
+- Building and consuming server-side API routes
+- Authentication and protected application routes
+- Database access with Prisma and PostgreSQL
+- Usage tracking and subscription workflows
+- Payment integration with Stripe
+- Responsive UI development with Tailwind CSS
+- Debugging and deploying a production-style web application
 
 ## Getting Started
 
-First, run the development server:
+Clone the repository and install the dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Sileye00/sileye-ai.git
+cd sileye-ai
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Create a `.env` file and configure the environment variables required by the services used in the application. Do **not** commit API keys or secrets to GitHub.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Then initialize Prisma and start the development server:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+npx prisma generate
+npm run dev
+```
 
-## Learn More
+Open `http://localhost:3000` in your browser.
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```text
+app/
+├── (auth)/          # Authentication pages
+├── (dashboard)/     # Authenticated application experience
+├── (landing)/       # Public landing page
+└── api/             # AI, Stripe, and webhook API routes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+components/          # Reusable UI components
+lib/                 # Shared utilities and application logic
+prisma/              # Prisma database schema
+public/              # Images and static assets
+```
 
-## Deploy on Vercel
+## Acknowledgment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project was originally built as part of a **Code With Antonio** course/tutorial. I used it as a hands-on learning project to deepen my understanding of full-stack development, generative AI integrations, authentication, databases, and subscription-based application architecture.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The repository is presented as a learning project and portfolio demonstration of the technologies and concepts I practiced.
